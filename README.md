@@ -3,6 +3,7 @@ Muhammad Raihan Akbar (2206827674) \
 PBP-B \
 Link Adaptable : https://seven-siege.adaptable.app/
 
+
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] **Membuat sebuah proyek Django baru.**
     1. Membuat direktori `seven_siege` dan membuat *virtual environment* dengan perintah `python -m venv env`.
@@ -95,6 +96,7 @@ Link Adaptable : https://seven-siege.adaptable.app/
     4. Memilih versi python sesuai *virtual environment* (3.10) dan menggunakan start command `python manage.py migrate && gunicorn seven_siege.wsgi`
     5. Mencentang bagian `HTTP Listener on PORT` dan memulai proses *deploy* aplikasi.
 
+
 ## 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![Bagan Django](https://cdn.discordapp.com/attachments/1054028087551078452/1151125519421681745/image.png)
 1. User: URL Request dengan method HTTP, seperti mengakses halaman web atau mengirim data melalui formulir.
@@ -104,23 +106,30 @@ Link Adaptable : https://seven-siege.adaptable.app/
 5. Database: berperan sebagai penyimpanan persisten untuk data yang digunakan oleh aplikasi.
 6. Template (HTML): Berkas-berkas ini mengatur tampilan halaman web dan menerima data dari fungsi tampilan (views). Template engine Django digunakan untuk mengintegrasikan data ke dalam HTML.
 
+
 ## 3. Jelaskan mengapa kita menggunakan *virtual environment*? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan *virtual environment*
 *virtual environment* adalah alat penting dalam pengembangan perangkat lunak yang digunakan untuk mengisolasi proyek-proyek Python yang berbeda. Ini memiliki beberapa tujuan penting:
 1. Isolasi Proyek
+
 *virtual environment* memungkinkan kita untuk membuat lingkungan yang terisolasi untuk setiap proyek Python yang berbeda. Ini berarti kita dapat menginstal paket dan dependensi yang diperlukan hanya untuk proyek tertentu tanpa memengaruhi instalasi Python global atau proyek lain.
 2. Pengujian
+
 Misalnya, jika kita ingin memindahkan aplikasi web Django dari 1.5 ke 1.9, kita dapat dengan mudah melakukannya dengan membuat *virtual environment* yang berbeda dan menginstal versi Django yang berbeda.
 3. Mengelola Versi Python
-Mengelola Versi Python: *virtual environment* juga memungkinkan kita untuk mengelola versi Python yang berbeda di berbagai proyek. Ini berguna jika kita perlu mengembangkan proyek yang berjalan di versi Python yang berbeda.
+
+*virtual environment* juga memungkinkan kita untuk mengelola versi Python yang berbeda di berbagai proyek. Ini berguna jika kita perlu mengembangkan proyek yang berjalan di versi Python yang berbeda.
 Meskipun demikian, kita masih bisa menjalankan proyek Django tanpa menggunakan *virtual environment*. Namun, hal ini mungkin akan menimbulkan masalah jika ada dependensi proyek yang berbeda dan memerlukan versi pustaka yang berbeda. Oleh karena itu, penggunaan *virtual environment* sangat disarankan untuk memastikan isolasi dan manajemen dependensi yang tepat.
 
 
 ## 4. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 1. MVC (Model-View-Controller):
+
 MVC adalah pola desain yang memisahkan aplikasi menjadi tiga komponen utama: Model, View, dan Controller. Model mewakili data aplikasi, View menampilkan data, dan Controller memperbarui View saat data berubah. Perbedaan utama dengan pola lain adalah penggunaan Controller sebagai pengendali antara Model dan View. MVC memisahkan perubahan data dari tampilan dan memungkinkan aplikasi untuk lebih mudah dikembangkan dan dikelola.
 
 2. MVT (Model-View-Template):
+
 MVT adalah variasi dari MVC yang digunakan dalam kerangka kerja Django. Dalam MVT, Template menggantikan Controller. Template adalah bagian yang menangani bagian presentasi dalam arsitektur MVT. Perbedaan utama MVT dengan MVC adalah penggunaan Template yang memisahkan kode HTML dari logika tampilan, sementara MVC biasanya menggunakan View untuk mengelola tampilan.
 
 3. MVVM (Model-View-ViewModel):
+
 MVVM adalah pola desain yang memisahkan pengembangan antarmuka pengguna (GUI) dari pengembangan logika bisnis atau back-end. Dalam MVVM, ViewModel bertindak sebagai penghubung antara Model dan View. Perbedaan utama MVVM adalah penggunaan ViewModel yang mengelola komunikasi antara Model dan View. Ini memungkinkan pengembang untuk lebih terfokus pada logika tampilan tanpa perlu menggabungkan banyak kode bisnis di dalam View.
