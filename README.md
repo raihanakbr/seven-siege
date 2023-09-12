@@ -120,6 +120,7 @@ Misalnya, jika kita ingin memindahkan aplikasi web Django dari 1.5 ke 1.9, kita 
 3. Mengelola Versi Python
 
 *virtual environment* juga memungkinkan kita untuk mengelola versi Python yang berbeda di berbagai proyek. Ini berguna jika kita perlu mengembangkan proyek yang berjalan di versi Python yang berbeda.
+
 Meskipun demikian, kita masih bisa menjalankan proyek Django tanpa menggunakan *virtual environment*. Namun, hal ini mungkin akan menimbulkan masalah jika ada dependensi proyek yang berbeda dan memerlukan versi pustaka yang berbeda. Oleh karena itu, penggunaan *virtual environment* sangat disarankan untuk memastikan isolasi dan manajemen dependensi yang tepat.
 
 
