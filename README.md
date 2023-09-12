@@ -112,9 +112,11 @@ Link Adaptable : https://seven-siege.adaptable.app/
 1. Isolasi Proyek
 
 *virtual environment* memungkinkan kita untuk membuat lingkungan yang terisolasi untuk setiap proyek Python yang berbeda. Ini berarti kita dapat menginstal paket dan dependensi yang diperlukan hanya untuk proyek tertentu tanpa memengaruhi instalasi Python global atau proyek lain.
+
 2. Pengujian
 
 Misalnya, jika kita ingin memindahkan aplikasi web Django dari 1.5 ke 1.9, kita dapat dengan mudah melakukannya dengan membuat *virtual environment* yang berbeda dan menginstal versi Django yang berbeda.
+
 3. Mengelola Versi Python
 
 *virtual environment* juga memungkinkan kita untuk mengelola versi Python yang berbeda di berbagai proyek. Ini berguna jika kita perlu mengembangkan proyek yang berjalan di versi Python yang berbeda.
