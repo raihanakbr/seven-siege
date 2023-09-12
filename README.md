@@ -96,7 +96,7 @@ Link Adaptable : https://seven-siege.adaptable.app/
     5. Mencentang bagian `HTTP Listener on PORT` dan memulai proses *deploy* aplikasi.
 
 ## 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-[Bagan Django](https://cdn.discordapp.com/attachments/1054028087551078452/1151125519421681745/image.png)
+![Bagan Django](https://cdn.discordapp.com/attachments/1054028087551078452/1151125519421681745/image.png)
 1. User: URL Request dengan method HTTP, seperti mengakses halaman web atau mengirim data melalui formulir.
 2. URLconfig (urls.py): Berkas ini mendefinisikan pola URL yang akan digunakan dalam aplikasi. Pola-pola ini mengarahkan permintaan user ke fungsi tampilan (views) yang sesuai.
 3. Views (views.py): Fungsi tampilan mengelola permintaan yang masuk dari URL. Mereka dapat mengakses data dari database melalui models.py jika diperlukan, dan mereka juga bertanggung jawab untuk merender berkas HTML yang sesuai.
