@@ -172,6 +172,7 @@ Karena form POST tidak menampilkan data pada URL, metode ini lebih aman untuk me
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
     ```
     Fungsi `show_html` tidak menggunakan *serializer* karena mengirimkan data tanpa mengubah formatnya, sementara `show_xml` dan `show_json` menggunakan *serializer* untuk mengonversi data ke dalam format yang lebih terstruktur dan standar (XML atau JSON) untuk memudahkan pengolahan dan pertukaran data.
+    
     3. Membuka `urls.py` dan Mengimpor fungsi yang sudah dibuat
     ```py
     from main.views import show_main, create_item, show_html, show_xml, show_json, show_xml_by_id, show_json_by_id
