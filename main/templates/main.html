@@ -1,70 +1,63 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h1>{{ appl_name }} Page</h1>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Seven Siege</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+          <a class="nav-link text-white" href="{% url 'main:logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1 class="text-black">{{ appl_name }} Page</h1>
+    <h5 class="text-black">Name:</h5>
+    <p class="text-black">{{name}}</p>
+    <h5 class="text-black">Class:</h5>
+    <p class="text-black">{{class}}</p>
+    <h4 class="text-black">Jumlah Item</h4>
+    <p class="text-black">Kamu menyimpan {{ item_count }} item pada applikasi ini</p>
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
-
-    <h5>Class:</h5>
-    <p>{{class}}</p>
-
-    <h4>Jumlah Item</h4>
-    <p>Kamu menyimpan {{ item_count }} item pada applikasi ini</p>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
+    <div class="card-group">
         {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.category}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.date_added}}</td>
-                <td>
+        <div class="card bg-secondary text-white{% if forloop.last %} last-card{% endif %}">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">Amount: {{ item.amount }}</p>
+                <p class="card-text">Price: {{ item.price }}</p>
+                <p class="card-text">Category: {{ item.category }}</p>
+                <p class="card-text">Description: {{ item.description }}</p>
+                <p class="card-text">Date Added: {{ item.date_added }}</p>
+                <div class="d-flex">
                     <form action="{% url 'main:add_amount' item.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" name="Increment"> + </button>
+                        <button type="submit" class="btn btn-primary me-2" name="Increment">+</button>
                     </form>
-                </td>
-                <td>
                     <form action="{% url 'main:subtract_amount' item.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" name="Decrement"> - </button>
+                        <button type="submit" class="btn btn-primary me-2" name="Decrement">-</button>
                     </form>
-                </td>
-                <td>
                     <form action="{% url 'main:remove_item' item.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" name="Remove"> X </button>
+                        <button type="submit" class="btn btn-danger" name="Remove">X</button>
                     </form>
-                </td>
-            </tr>
+                </div>                               
+            </div>
+        </div>
         {% endfor %}
-    </table>
+    </div>
     
     <br />
     
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Item
-        </button>
-    </a>
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>    
+    <a href="{% url 'main:create_item' %}" class="btn btn-success">Add New Item</a>
+    <!-- <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a> -->
+    <h5 class="text-white">Sesi terakhir login: {{ last_login }}</h5>
+</div>
+
 {% endblock content %}

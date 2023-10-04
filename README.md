@@ -2,6 +2,242 @@
 **PBP-B** \
 ![elaina](https://media.discordapp.net/attachments/874575252808667149/1153856416126353448/elaina.gif?width=200&height=200)
 
+# Tugas 5 PBP
+
+## 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+1. **Selektor Tag:** Selektor ini memilih elemen berdasarkan nama tag. Misalnya, p `{ color: red; }` akan memilih semua elemen `<p>` dan mengatur warna teksnya menjadi merah. Selektor tag sangat berguna saat ingin menerapkan gaya yang sama ke semua elemen dengan tag tertentu.
+
+2. **Selektor Class:** Selektor ini memilih elemen berdasarkan nama class yang diberikan. Misalnya, `.blue { color: white; background: blue; padding: 5px; }` akan memilih semua elemen dengan class `blue` dan menerapkan gaya tersebut. Selektor class sangat berguna untuk menerapkan gaya yang sama ke sekelompok elemen yang memiliki class yang sama.
+
+2. **Selektor ID:** Selektor ini hampir sama dengan class, tetapi ID bersifat unik dan hanya boleh digunakan oleh satu elemen saja. Misalnya, `#header { background: teal; color: white; height: 100px; padding: 50px; }` akan memilih elemen dengan id `header` dan menerapkan gaya tersebut1. Selektor ID sangat berguna untuk menerapkan gaya khusus ke satu elemen tertentu.
+
+3. **Selektor Atribut:** Selektor ini memilih elemen berdasarkan atribut1. Misalnya, `input[type=text] { background: none; color: cyan; padding: 10px; border: 2px solid cyan; }` akan memilih semua elemen `<input>` yang memiliki atribut `type=‘text’` dan menerapkan gaya tersebut. Selektor atribut sangat berguna untuk menerapkan gaya khusus ke elemen dengan atribut tertentu.
+
+4. **Selektor Universal:** Selektor ini digunakan untuk menyeleksi semua elemen pada jangkauan *(scope)* tertentu. Misalnya, `{ border: 2px solid grey; }` akan memberikan garis solid dengan ukuran `2px` dan berwarna grey ke semua elemen. Selektor universal biasanya digunakan untuk me-reset CSS.
+
+## 2. Jelaskan HTML5 Tag yang kamu ketahui.
+
+- `<!DOCTYPE>`: Mendefinisikan tipe dokumen dan versi HTML.
+- `<html>`: Mendefinisikan akar dari dokumen HTML.
+- `<head>`: Mengandung metadata/informasi untuk dokumen.
+- `<title>`: Mendefinisikan judul untuk dokumen.
+- `<body>`: Mendefinisikan badan dokumen.
+- `<h1>` sampai `<h6>`: Mendefinisikan judul HTML.
+- `<p>`: Mendefinisikan paragraf.
+- `<br>`: Mendefinisikan jeda baris tunggal.
+- `<a>`: Mendefinisikan *hyperlink*.
+- `<img>`: Digunakan untuk menyisipkan gambar.
+- `<div>`: Mendefinisikan bagian dalam dokumen.
+- `<span>`: Digunakan untuk mengelompokkan elemen inline dalam dokumen.
+- `<ul>`, `<ol>`, dan `<li>`: Digunakan untuk membuat daftar.
+- `<table>`, `<tr>`, `<td>`, dan `<th>`: Digunakan untuk membuat tabel.
+- `<form>`, `<input>`, `<textarea>`, `<button>`, dll.: Digunakan untuk membuat form.
+- `<header>` dan `<footer>`: Mendefinisikan header dan footer dari dokumen atau bagian
+- `<nav>`: Digunakan untuk mendefinisikan navigasi link
+
+## 3. Jelaskan perbedaan antara *margin* dan *padding*.
+
+1. **Margin:**
+    -  Margin adalah ruang di luar batas luar elemen HTML. Ini adalah jarak antara elemen HTML dan elemen-elemen lain yang berada di sekitarnya.
+    - Margin digunakan untuk mengendalikan jarak antara elemen HTML dengan elemen-elemen lain yang ada di sekitarnya, seperti elemen tetangga atau batas dari elemen yang berbeda.
+    - Margin tidak memiliki latar belakang atau warna, dan tidak dapat digunakan untuk mengatur tampilan elemen HTML itu sendiri.
+
+2. **Padding:**
+    - Padding adalah ruang di dalam batas luar elemen HTML. Ini adalah jarak antara batas elemen HTML dan kontennya sendiri.
+    - Padding digunakan untuk mengendalikan jarak antara konten elemen HTML dan batasnya sendiri. Ini memengaruhi tampilan elemen HTML itu sendiri.
+    - Padding dapat memiliki latar belakang atau warna yang berbeda dari elemen HTML, sehingga dapat digunakan untuk mengatur tampilan elemen, misalnya, memberikan ruang di sekitar teks dalam sebuah kotak.
+
+## 4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+| Tailwind | Bootstrap |
+| -------- | --------- |
+| Tailwind CSS membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya.     | Bootstrap menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung.      |
+| Tailwind CSS memiliki *file* CSS yang lebih kecil sedikit dibandingkan Bootstrap dan hanya akan memuat kelas-kelas utilitas yang ada | Bootstrap memiliki *file* CSS yang lebih besar dibandingkan dengan Tailwind CSS karena termasuk banyak komponen yang telah didefinisikan. |
+| Tailwind CSS memiliki memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek | Bootstrap sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan. |
+| Tailwind CSS memiliki pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia dan bagaimana menggabungkannya untuk mencapai tampilan yang diinginkan. | Bootstrap memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan. |
+
+Pilihan antara Bootstrap dan Tailwind tergantung pada kebutuhan proyek, preferensi desain, dan tingkat fleksibilitas yang diinginkan:
+
+- Gunakan Bootstrap jika: Anda membutuhkan kerangka kerja yang stabil dan mudah digunakan untuk proyek dengan desain tradisional. Bootstrap juga bagus untuk situs web responsif cepat.
+- Gunakan Tailwind jika: Anda ingin memiliki kendali penuh atas gaya dan tata letak dengan kombinasi class utilitas yang spesifik. Tailwind lebih baik untuk desain khusus.
+
+Baik Bootstrap maupun Tailwind memiliki ekosistem pengembangan yang kuat, sehingga kita dapat dengan mudah menemukan sumber daya dan dukungan yang diperlukan dalam proses pengembangan.
+
+## 5. Implementasi Checklist
+
+1. Menambahkan Bootstrap pada Aplikasi dengan membuka `base.html` pada `templates` dan menambahkan kode sebagai berikut.
+    ```html
+        <head>
+            ...
+            {% endblock meta %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        </head>
+    ```
+2. Menbamahkan `navbar` pada halaman `main` dan `create_item` sebagai berikut.
+    ```html
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Seven Siege</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+            <a class="nav-link text-white" href="{% url 'main:logout' %}">Logout</a>
+            </div>
+        </div>
+        </div>
+    </nav>
+    ...
+    ```
+3. Membuka `main.html` dan membuat `div` dengan class `cards` untuk menampung semua item dan menaruhnya pada `container` sebagai berikut.
+    ```html
+    <div class="container mt-5">
+        <h1 class="text-black">{{ appl_name }} Page</h1>
+        <h5 class="text-black">Name:</h5>
+        <p class="text-black">{{name}}</p>
+        <h5 class="text-black">Class:</h5>
+        <p class="text-black">{{class}}</p>
+        <h4 class="text-black">Jumlah Item</h4>
+        <p class="text-black">Kamu menyimpan {{ item_count }} item pada applikasi ini</p>
+
+        <div class="card-group">
+            {% for item in items %}
+            <div class="card bg-secondary text-white{% if forloop.last %} last-card{% endif %}">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">Amount: {{ item.amount }}</p>
+                    <p class="card-text">Price: {{ item.price }}</p>
+                    <p class="card-text">Category: {{ item.category }}</p>
+                    <p class="card-text">Description: {{ item.description }}</p>
+                    <p class="card-text">Date Added: {{ item.date_added }}</p>
+                    <div class="d-flex">
+                        <form action="{% url 'main:add_amount' item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary me-2" name="Increment">+</button>
+                        </form>
+                        <form action="{% url 'main:subtract_amount' item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary me-2" name="Decrement">-</button>
+                        </form>
+                        <form action="{% url 'main:remove_item' item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" name="Remove">X</button>
+                        </form>
+                    </div>                               
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <br />
+        
+        <a href="{% url 'main:create_item' %}" class="btn btn-success">Add New Item</a>
+        <h5 class="text-white">Sesi terakhir login: {{ last_login }}</h5>    
+    </div>
+    ```
+
+4. Membuat `login page` lebih rapi dengan membuat elemen-elemen yang ada menjadi di tengah dan menambahkan *margin* sebagai berikut.
+    ```html
+    {% block content %}
+
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="login">
+            <h1>Login</h1>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                </div>
+
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </div>
+            </form>
+
+            <p class="mt-3">Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+        </div>
+    </div>
+
+    {% endblock content %}
+    ```
+
+5. Mendesain halaman `create_item.html` dengan menambahkan *container* dan memberikan warna sebagai berikut.
+    ```html
+    <div class="container mt-5">
+
+        <div class="card bg-dark text-white">
+            <div class="card-header">
+                <h1 class="card-title">Add New Item</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <div class="card bg-secondary">
+                            <div class="card-body">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card bg-secondary">
+                            <div class="card-body">
+                                {{ form.amount.label_tag }}
+                                {{ form.amount }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card bg-secondary">
+                            <div class="card-body">
+                                {{ form.price.label_tag }}
+                                {{ form.price }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card bg-secondary">
+                            <div class="card-body">
+                                {{ form.category.label_tag }}
+                                {{ form.category }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card bg-secondary">
+                            <div class="card-body">
+                                {{ form.description.label_tag }}
+                                {{ form.description }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Add Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    ```
+
 # Tugas 4 PBP
 
 ## 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
