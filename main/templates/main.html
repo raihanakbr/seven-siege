@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock meta %}
 {% block content %}
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
@@ -25,9 +30,9 @@
 
     <div class="card-group">
         {% for item in items %}
-        <div class="card bg-secondary text-white{% if forloop.last %} last-card{% endif %}">
+        <div class="card bg-secondary text-white">
             <!-- <img src="..." class="card-img-top" alt="..."> -->
-            <div class="card-body">
+            <div class="card-body {% if forloop.last %} last-card{% endif %}">
                 <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">Amount: {{ item.amount }}</p>
                 <p class="card-text">Price: {{ item.price }}</p>
