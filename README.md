@@ -269,6 +269,8 @@ Jadi, pilihan antara Fetch API dan jQuery sebenarnya tergantung pada kebutuhan s
     
     Setelah data di `fetch`, `div` cards akan di display ulang sehingga `item` baru akan muncul dan `form` akan di-*reset*.
 
+5. Menjalankan `python manage.py collectstatic` untuk mengumpulkan file static dari setiap aplikasi dalam suatu folder yang dapat dengan mudah disajikan pada produksi
+
 # Tugas 5
 
 ## 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
