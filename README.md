@@ -2,7 +2,274 @@
 **PBP-B** \
 ![elaina](https://media.discordapp.net/attachments/874575252808667149/1153856416126353448/elaina.gif?width=200&height=200)
 
-# Tugas 5 PBP
+# Tugas 6
+
+## 1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+| | Asynchronous Programming | Synchronous Programming |
+|---|---|---|
+| **Definisi** | Pendekatan pemrograman yang tidak terikat pada input output (I/O) protocol. | Pendekatan yang lebih old style. Task akan dieksekusi satu persatu sesuai dengan urutan dan prioritas task. |
+| **Proses** | Pekerjaan dilakukan tanpa harus terikat dengan proses lain atau dapat kita sebut secara independent. Proses jalannya program bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. | Masing-masing task harus menunggu task lain selesai untuk diproses terlebih dahulu. |
+| **Keuntungan** | Memungkinkan waktu eksekusi menjadi lebih singkat dan cepat. | Kemudahan yang ditawarkan oleh synchronous programming dibandingkan dengan asynchronous programming. |
+
+## 2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma *event-driven programming* adalah suatu pendekatan dalam pemrograman di mana alur program ditentukan oleh event atau kejadian. Dalam konteks JavaScript dan AJAX, *event* bisa berupa berbagai aktivitas yang dilakukan oleh pengguna, seperti klik tombol, pilihan dari daftar *dropdown*, entri ke dalam kotak teks, dan lainnya.
+
+Dalam tugas 6 ini, ada beberapa penerapan paradigma *event-driven programming*, salah satunya adalah penggunaan event listener untuk merespons tindakan pengguna. Berikut adalah contoh penerapannya:
+
+#### - main.html
+    ```html
+    ...
+    <script>
+    ...
+    const removeButton = document.createElement("button");
+    removeButton.className = "btn btn-danger";
+    removeButton.textContent = "X";
+    removeButton.addEventListener('click', async () => {
+        const response = await fetch(`/remove/${item.pk}/`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+        }).then(displayItemCards);
+    });
+    ...
+    </script>
+    ```
+
+Dalam contoh di atas, saat tombol dengan teks "x" diklik, sebuah event listener ditetapkan pada tombol tersebut dengan menggunakan `addEventListener`. Ketika tombol tersebut diklik, fungsi callback yang ditentukan akan dijalankan secara asinkron. Dalam hal ini, fungsi tersebut mengirim permintaan AJAX menggunakan `fetch` ke URL `/remove/${item.pk}/` dengan metode **POST**. Setelah permintaan berhasil selesai, fungsi `displayItemCards` akan dipanggil untuk memperbarui tampilan dengan data yang diperbarui.
+
+## 3. Jelaskan penerapan asynchronous programming pada AJAX.
+
+Dalam konteks AJAX, *asynchronous* berarti aplikasi web dapat memproses setiap *request* (permintaan) yang datang ke server di sisi *background*. Dengan kata lain, aplikasi web dapat mengirimkan dan menerima data dari server tanpa harus *reload* keseluruhan halaman.
+
+Berikut adalah beberapa contoh penerapan *asynchronous programming* pada AJAX:
+
+1. **Sistem voting dan rating**: Setelah pengguna mengklik opsi *rating* atau *voting*, website akan memperbarui kalkulasi tapi tampilan halaman tetap sama, tidak ada yang diubah atau harus *reload*.
+2. **Chat room**: Sebagian website ada yang mengaktifkan *chat room* bawaan di halaman utamanya. *Chat room* ini menjadi media bagi Anda untuk berkomunikasi dengan tim *customer support*. Anda tidak perlu khawatir fitur ini akan tertutup bilamana ingin membuka halaman lain dari website tersebut.
+
+Secara umum, teknik *asynchronous* banyak digunakan untuk mengelola komunikasi yang tidak mungkin sinkron atau harus menunggu seperti proses *request ajax*, operasi *file*, koneksi ke *database*, *websocket*, *real time communication* seperti pada aplikasi *chatting* dan masih banyak lagi.
+
+## 4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+Dalam konteks penggunaan, baik Fetch API maupun jQuery memiliki kelebihan dan kekurangan masing-masing. Fetch API lebih modern dan mengembalikan promise, membuatnya lebih mudah digunakan dengan *async*/*await*. Namun, Fetch API secara default tidak mengirim atau menerima *cookie*.
+
+Di sisi lain, jQuery menyederhanakan fungsi AJAX dan memiliki kelebihan dalam hal *cross-compatibility* dan kode yang sangat *mature* dari *polyfill*nya. Ini bisa menjadi pertimbangan penting jika kita perlu mendukung browser yang lebih lama.
+
+Jadi, pilihan antara Fetch API dan jQuery sebenarnya tergantung pada kebutuhan spesifik proyek kita. Jika kita membutuhkan dukungan browser yang luas dan fitur-fitur tambahan yang disediakan oleh jQuery, maka jQuery bisa menjadi pilihan yang baik. Namun, jika kita lebih suka bekerja dengan promise dan tidak memerlukan fitur tambahan dari jQuery, maka Fetch API bisa menjadi pilihan yang lebih baik.
+
+## 5. Implementasi Checklist
+
+1. Membuka `views.py` dan Membuat fungsi `get_item_json` untuk mengembalikan data JSON dan fungsi `add_product_ajax` untuk menambahkan item dengan AJAX sebagai berikut.
+    ```py
+    def get_item_json(request):
+        product_item = Item.objects.all()
+        return HttpResponse(serializers.serialize('json', product_item))
+
+    @csrf_exempt
+    def create_ajax(request):
+        if request.method == 'POST':
+            name = request.POST.get("name")
+            amount = request.POST.get("amount")
+            price = request.POST.get("price")
+            category = request.POST.get("category")
+            description = request.POST.get("description")
+            user = request.user
+
+            new_item = Item(name=name, amount=amount, price=price, category=category, description=description, user=user)
+            new_item.save()
+
+            return HttpResponse(b"CREATED", status=201)
+        return HttpResponseNotFound()
+    ```
+2. Menambahkan *routing* untuk kedua fungsi tersebut pada `urls.py` sebagai berikut.
+    ```py
+        ...
+        path('get-item/', get_item_json, name='get_item_json'),
+        path('create-ajax/', create_ajax, name='create_ajax'),
+    ```
+
+3. Membuat `div` baru untuk modal forum pada `main.html` untuk penambahan *item* dan membuat *button* untuk menampilkan modal sebagai berikut.
+    ```html
+    ...
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    ...
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    ...
+    ```
+
+4. Mengubah *layout* `cards` sehingga *layout* dan pengambilan task isi cards tersebut mendukung/menggunakan AJAX
+    ```html
+    <div class="card-group" id="item-cards">
+    </div>
+    ...
+
+    ...
+    <script>
+    const csrfToken = "{{ csrf_token }}";
+
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    async function displayItemCards() {
+        try {
+            const items = await getItems();
+            const itemCardsContainer = document.getElementById("item-cards");
+            itemCardsContainer.innerHTML = ""; // Clear existing cards
+
+            items.forEach((item, index, array) => {
+                const card = document.createElement("div");
+                card.className = "card bg-secondary text-white";
+
+                const cardBody = document.createElement("div");
+                cardBody.className = "card-body";
+                if (index === array.length - 1) {
+                    cardBody.classList.add("last-card");
+                }
+
+                const cardTitle = document.createElement("h5");
+                cardTitle.className = "card-title";
+                cardTitle.textContent = item.fields.name;
+
+                const cardAmount = document.createElement("p");
+                cardAmount.className = "card-text";
+                cardAmount.textContent = "Amount: " + item.fields.amount;
+
+                const cardPrice = document.createElement("p");
+                cardPrice.className = "card-text";
+                cardPrice.textContent = "Price: " + item.fields.price;
+
+                const cardCategory = document.createElement("p");
+                cardCategory.className = "card-text";
+                cardCategory.textContent = "Category: " + item.fields.category;
+
+                const cardDescription = document.createElement("p");
+                cardDescription.className = "card-text";
+                cardDescription.textContent = "Description: " + item.fields.description;
+
+                const cardDateAdded = document.createElement("p");
+                cardDateAdded.className = "card-text";
+                cardDateAdded.textContent = "Date Added: " + item.fields.date_added;
+
+                const buttonDiv = document.createElement("div");
+                buttonDiv.className = "d-flex";
+
+                const incrementButton = document.createElement("button");
+                incrementButton.className = "btn btn-primary me-2";
+                incrementButton.textContent = "+";
+                incrementButton.addEventListener('click', async () => {
+                    const response = await fetch(`/add/${item.pk}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-CSRFToken': csrfToken
+                        },
+                    }).then(displayItemCards);
+                });
+
+                const decrementButton = document.createElement("button");
+                decrementButton.className = "btn btn-primary me-2";
+                decrementButton.textContent = "-";
+                decrementButton.addEventListener('click', async () => {
+                    const response = await fetch(`/subtract/${item.pk}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-CSRFToken': csrfToken
+                        },
+                    }).then(displayItemCards);
+                });
+
+                const removeButton = document.createElement("button");
+                removeButton.className = "btn btn-danger";
+                removeButton.textContent = "X";
+                removeButton.addEventListener('click', async () => {
+                    const response = await fetch(`/remove/${item.pk}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-CSRFToken': csrfToken
+                        },
+                    }).then(displayItemCards);
+                });
+
+                // Append elements to card
+                buttonDiv.appendChild(incrementButton);
+                buttonDiv.appendChild(decrementButton);
+                buttonDiv.appendChild(removeButton);
+
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardAmount);
+                cardBody.appendChild(cardPrice);
+                cardBody.appendChild(cardCategory);
+                cardBody.appendChild(cardDescription);
+                cardBody.appendChild(cardDateAdded);
+                cardBody.appendChild(buttonDiv);
+                card.appendChild(cardBody);
+
+                // Append card to the container
+                itemCardsContainer.appendChild(card);
+            });
+        } catch (error) {
+            console.error("An error occurred while fetching items:", error);
+        }
+    }
+    </script>
+    ```
+
+5. Membuat fungsi `addItem` yang akan dipanggil ketika tombol `Add Product` pada modal ditekan sebagai berikut.
+    ```html
+    <script>
+    ...
+    function addItem() {
+            fetch("{% url 'main:create_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(displayItemCards)
+
+            document.getElementById("form").reset()
+            return false
+        }
+    document.getElementById("button_add").onclick = addItem
+    </script>
+    ```
+    
+    Setelah data di `fetch`, `div` cards akan di display ulang sehingga `item` baru akan muncul dan `form` akan di-*reset*.
+
+# Tugas 5
 
 ## 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
 
@@ -238,7 +505,7 @@ Baik Bootstrap maupun Tailwind memiliki ekosistem pengembangan yang kuat, sehing
     </div>
     ```
 
-# Tugas 4 PBP
+# Tugas 4
 
 ## 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
 UserCreationForm adalah impor formulir bawaan yang memudahkan pembuatan formulir pendaftaran pengguna dalam aplikasi web. Dengan formulir ini, pengguna baru dapat mendaftar dengan mudah di situs web Anda tanpa harus menulis kode dari awal.
@@ -511,7 +778,7 @@ Untuk mengatasi risiko-risiko ini, kita harus mengambil langkah-langkah keamanan
         ...
         ```
 
-# Tugas 3 PBP
+# Tugas 3
 
 ## 1. Apa perbedaan antara form POST dan form GET dalam Django?
 - **Pengiriman Data:**
@@ -708,7 +975,7 @@ Karena form POST tidak menampilkan data pada URL, metode ini lebih aman untuk me
 - **JSON by ID**
 ![JSON/ID](https://media.discordapp.net/attachments/1054028087551078452/1153854506442965012/Screenshot_39.png?width=1040&height=585)
 
-# Tugas 2 PBP
+# Tugas 2
 
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] **Membuat sebuah proyek Django baru.**

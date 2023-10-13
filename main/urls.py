@@ -1,6 +1,6 @@
 from django.urls import path
 from main.views import show_main, create_item, show_html, show_xml, show_json, show_xml_by_id, show_json_by_id, \
-register, login_user, logout_user, add_amount, subtract_amount, remove_item
+register, login_user, logout_user, add_amount, subtract_amount, remove_item, get_item_json, create_ajax
 
 app_name = 'main'
 
@@ -19,4 +19,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('get-item/', get_item_json, name='get_item_json'),
+    path('create-ajax/', create_ajax, name='create_ajax'),
 ]
