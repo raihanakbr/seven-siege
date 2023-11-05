@@ -119,7 +119,7 @@ def remove_item(request, item_id):
     return redirect('/')
 
 def get_item_json(request):
-    product_item = Item.objects.all()
+    product_item = Item.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
 @csrf_exempt
