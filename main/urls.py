@@ -21,4 +21,5 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('get-item/', get_item_json, name='get_item_json'),
     path('create-ajax/', create_ajax, name='create_ajax'),
+    path('create-flutter/', create_product_flutter, name='create_product_flutter'),
 ]
